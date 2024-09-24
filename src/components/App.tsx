@@ -1,4 +1,10 @@
+import { useCountdown } from 'hooks/useCountDown'
+
 const App = () => {
+  const { days, hours, minutes, seconds } = useCountdown(
+    'October 24, 2024 23:59:59'
+  )
+
   return (
     <div className="main mx-auto w-full max-w-[780px]">
       <div className="main-img relative z-[99] px-4 py-5">
@@ -16,13 +22,13 @@ const App = () => {
             ANHTHU
           </h1>
         </div>
-        <h3 className="font-saigon text-center text-[12px] tracking-[2.5px] text-white">
-          joyfully invite you to celebrate their union
+        <h3 className="font-saigon text-center text-[14px] tracking-[2.5px] text-white">
+          Trân trọng mời bạn đến chung vui trong ngày hạnh phúc của chúng tôi{' '}
         </h3>
       </div>
       <div className="relative z-[99] bg-[#2E372E] px-[20px] pb-0 pt-14">
         <h3 className="font-main-sans text-mint text-center text-[13px] uppercase tracking-wider">
-          WEDDING CEREMONY
+          LỄ THÀNH HÔN
         </h3>
       </div>
       <div className="relative z-[99] bg-[#2E372E] px-[20px] pt-8">
@@ -38,7 +44,7 @@ const App = () => {
       </div>
       <div className="date-box relative z-[99] w-full bg-[#2E372E] px-5 pb-14 pt-7">
         <div className="font-saigon border-y-[0.75px] border-white py-3 text-center text-xl font-normal uppercase tracking-widest text-white">
-          FRIDAY
+          THỨ 6
         </div>
         <div className="flex w-full items-center justify-center">
           <div className="w-full flex-col items-center justify-center gap-[7px]">
@@ -54,7 +60,7 @@ const App = () => {
           </div>
         </div>
         <div className="font-saigon border-y-[0.75px] border-white py-3 text-center text-xl font-normal uppercase tracking-widest text-white">
-          4PM
+          16:30
         </div>
       </div>
       <div className="grid gap-5 bg-white px-12 py-6">
@@ -103,7 +109,7 @@ const App = () => {
             />
           </svg>
           <span className="font-saigon text-md text-green">
-            Friday, October 25th 2024
+            Ngày 25 tháng 10, 2024
           </span>
         </div>
         <a
@@ -152,37 +158,37 @@ const App = () => {
         <div className="flex">
           <div className="flex flex-col items-center">
             <div className="font-main-serif grid size-[60px] items-center justify-center rounded-lg bg-white bg-opacity-10 p-4 text-[26px] font-bold text-white">
-              29
+              {days < 10 ? `0${days}` : days}
             </div>
             <div className="font-saigon mt-2 text-xs capitalize text-white">
-              days
+              ngày
             </div>
           </div>
           <div className="mx-2 mb-8 mt-2 text-4xl text-white">:</div>
           <div className="flex flex-col items-center">
             <div className="font-main-serif grid size-[60px] items-center justify-center rounded-lg bg-white bg-opacity-10 p-4 text-[26px] font-bold text-white">
-              15
+              {hours < 10 ? `0${hours}` : hours}
             </div>
             <div className="font-saigon mt-2 text-xs capitalize text-white">
-              hours
+              giờ
             </div>
           </div>
           <div className="mx-2 mb-8 mt-2 text-4xl text-white">:</div>
           <div className="flex flex-col items-center">
             <div className="font-main-serif grid size-[60px] items-center justify-center rounded-lg bg-white bg-opacity-10 p-4 text-[26px] font-bold text-white">
-              00
+              {minutes < 10 ? `0${minutes}` : minutes}
             </div>
             <div className="font-saigon mt-2 text-xs capitalize text-white">
-              minutes
+              phút
             </div>
           </div>
           <div className="mx-2 mb-8 mt-2 text-4xl text-white">:</div>
           <div className="flex flex-col items-center">
             <div className="font-main-serif grid size-[60px] items-center justify-center rounded-lg bg-white bg-opacity-10 p-4 text-[26px] font-bold text-white">
-              47
+              {seconds < 10 ? `0${seconds}` : seconds}
             </div>
             <div className="font-saigon mt-2 text-xs capitalize text-white">
-              seconds
+              giây
             </div>
           </div>
         </div>
@@ -279,7 +285,9 @@ const App = () => {
                 <div className="font-saigon-b text-center text-[22px] font-bold">
                   16:30
                 </div>
-                <div className="font-saigon text-center text-sm">Reception</div>
+                <div className="font-saigon text-center text-sm">
+                  Tiệc chiêu đãi
+                </div>
               </div>
             </div>
             <div className="z-10 -mt-12 h-px w-4 rounded-[1px] bg-[#4A594A]" />
@@ -344,7 +352,9 @@ const App = () => {
                 <div className="font-saigon-b text-center text-[22px] font-bold">
                   17:30
                 </div>
-                <div className="font-saigon text-center text-sm">Ceremony</div>
+                <div className="font-saigon text-center text-sm">
+                  Lễ thành hôn
+                </div>
               </div>
             </div>
           </div>
@@ -409,9 +419,7 @@ const App = () => {
                 <div className="font-saigon-b text-center text-[22px] font-bold">
                   18:00
                 </div>
-                <div className="font-saigon text-center text-sm">
-                  Photo time
-                </div>
+                <div className="font-saigon text-center text-sm">Chụp ảnh</div>
               </div>
             </div>
             <div className="z-10 -mt-12 h-px w-4 rounded-[1px] bg-[#4A594A]" />
@@ -450,7 +458,7 @@ const App = () => {
                 <div className="font-saigon-b text-center text-[22px] font-bold">
                   18:30
                 </div>
-                <div className="font-saigon text-center text-sm">Eating</div>
+                <div className="font-saigon text-center text-sm">Dùng tiệc</div>
               </div>
             </div>
           </div>
@@ -535,7 +543,9 @@ const App = () => {
                 <div className="font-saigon-b text-center text-[22px] font-bold">
                   19:30
                 </div>
-                <div className="font-saigon text-center text-sm">Speeches</div>
+                <div className="font-saigon text-center text-sm">
+                  Bài phát biểu
+                </div>
               </div>
             </div>
             <div className="z-10 -mt-12 h-px w-4 rounded-[1px] bg-[#4A594A]" />
@@ -799,7 +809,7 @@ const App = () => {
             22:00
           </div>
           <div className="font-saigon text-center text-sm">
-            After party at{' '}
+            After party tại{' '}
             <p className="font-saigon-b font-bold">the Hideout</p>
           </div>
         </div>
@@ -809,18 +819,19 @@ const App = () => {
           <div className="ann-img-1 col-auto size-full overflow-hidden rounded-[10px]" />
           <div className="col-span-1 grid items-center rounded-[10px] bg-[#596F52] px-[20px] py-[22px]">
             <p className="font-saigon text-[12px] leading-[150%] text-[#F1F4F0]">
-              Thu and Charles met in 2019 in Hanoi. Since then, their bond has
-              continued to strengthen through facing challenges together,
-              enjoying wonderful moments, and being true companions in life's
-              journey.
+              Thư và Charles gặp nhau vào năm 2019 tại Hà Nội. Kể từ đó, tình
+              cảm của họ ngày càng bền chặt qua những thử thách cùng nhau vượt
+              qua, những khoảnh khắc tuyệt vời và trở thành những người đồng
+              hành thực sự trên hành trình cuộc sống.
             </p>
             <p className="font-saigon mt-4 text-[12px] leading-[150%] text-[#F1F4F0]">
-              It was this that led Charles to propose to Thu on the 23rd of
-              October 2023, in Chiang Mai, Thailand.
+              Chính điều đó đã dẫn đến việc Charles cầu hôn Thư vào ngày 23
+              tháng 10 năm 2023, tại Chiang Mai, Thái Lan.
             </p>
             <p className="font-saigon mt-4 text-[12px] leading-[150%] text-[#F1F4F0]">
-              Now, almost exactly a year later, it is time to honor that
-              proposal with a wedding attended by friends and family.
+              Giờ đây, gần tròn một năm sau, đã đến lúc vinh danh lời cầu hôn ấy
+              bằng một lễ cưới được tổ chức trong sự hiện diện của gia đình và
+              bạn bè.
             </p>
           </div>
         </div>
@@ -1035,8 +1046,8 @@ const App = () => {
       </div>
       <div className="relative -top-[3px] grid place-content-center bg-[#819C79] px-8 py-[28px]">
         <p className="font-saigon text-center text-sm text-[#F1F4F0]">
-          We look forward to the honor of your presence. We kindly request your
-          RSVP by 30th September 2024
+          Chúng tôi rất mong được đón tiếp sự hiện diện của bạn. Kính mong bạn
+          vui lòng xác nhận tham dự trước ngày 14 tháng 10 năm 2024.
         </p>
       </div>
       <div className="relative -top-1 bg-white px-8 pt-14">
@@ -1051,7 +1062,7 @@ const App = () => {
             Charles Bester
           </h3>
           <p className="font-saigon text-center text-[12px] capitalize tracking-wider text-[#A7BAA2] ">
-            We Look forward to your Attendance
+            Chúng tôi mong chờ sự tham dự của bạn.{' '}
           </p>
           <form method="POST" className="relative grid gap-4 pt-6">
             <div className="grid gap-2">
@@ -1059,13 +1070,13 @@ const App = () => {
                 htmlFor="guest_name"
                 className="font-saigon text-form text-[12px]"
               >
-                Guest
+                Khách mời
               </label>
               <input
                 type="text"
                 id="guest_name"
                 name="guest_name"
-                placeholder="Name"
+                placeholder="Tên"
                 required
                 className="font-main-sans rounded-md border border-gray-400 bg-white p-2 text-[10px] font-normal leading-loose tracking-wide text-gray-600"
               />
@@ -1075,13 +1086,13 @@ const App = () => {
                 htmlFor="partner_name"
                 className="font-saigon text-form text-[12px]"
               >
-                Partner
+                Bạn đồng hành
               </label>
               <input
                 type="text"
                 id="partner_name"
                 name="partner_name"
-                placeholder="Name"
+                placeholder="Tên"
                 className="font-main-sans rounded-md border border-gray-400 bg-white p-2 text-[10px] font-normal leading-loose tracking-wide text-gray-600"
               />
             </div>
@@ -1116,7 +1127,7 @@ const App = () => {
                     htmlFor="t16-no"
                     className="form-btn-text font-main-sans-medium text-form pl-8 text-[12px] uppercase"
                   >
-                    declines
+                    Từ chối
                   </label>
                 </div>
                 <div className="btn-box flex items-center justify-start gap-2">
@@ -1132,7 +1143,7 @@ const App = () => {
                     htmlFor="t16-yes"
                     className="form-btn-text font-main-sans-medium text-form pl-8 text-[12px] uppercase"
                   >
-                    accepts
+                    Tham dự
                   </label>
                 </div>
                 <button className="col-span-2 mx-auto inline-flex h-[39px] w-[159px] items-center justify-center gap-2.5 rounded-[3px] border border-stone-400 bg-[#C7D3C4] px-[37px] py-2.5">
@@ -1147,10 +1158,10 @@ const App = () => {
       </div>
       <div className="relative -top-[5px] grid place-items-center bg-white px-10 py-[40px]">
         <p className="font-saigon mt-3 text-center text-sm italic text-[#596F52]">
-          Dresscode: Non-white attire preferred
+          Dress code : Ưu tiên trang phục không màu trắng.
         </p>
         <p className="font-saigon-b mt-3 text-center text-xs text-[#596F52]">
-          We look forward to the honor of your presence!
+          Chúng tôi rất mong được đón tiếp sự hiện diện của bạn!{' '}
         </p>
         <img src="./images/decor.svg" alt="decoration" className="mb-6 mt-9" />
       </div>
