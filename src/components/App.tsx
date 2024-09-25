@@ -917,72 +917,72 @@ const App = () => {
           <img
             src="./images/gal-1.png"
             alt="Gallery item 0"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-12.jpg"
             alt="Gallery item 1"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-2.png"
             alt="Gallery item 2"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-10.jpg"
             alt="Gallery item 3"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-3.png"
             alt="Gallery item 4"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-7.png"
             alt="Gallery item 5"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-4.png"
             alt="Gallery item 6"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-1.png"
             alt="Gallery item 7"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-12.jpg"
             alt="Gallery item 8"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-2.png"
             alt="Gallery item 9"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-10.jpg"
             alt="Gallery item 10"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-3.png"
             alt="Gallery item 11"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-7.png"
             alt="Gallery item 12"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
           <img
             src="./images/gal-4.png"
             alt="Gallery item 13"
-            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
           />
         </ImageScroll>
 
@@ -991,62 +991,62 @@ const App = () => {
             <img
               src="./images/gal-5.png"
               alt="Gallery item 0"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
             <img
               src="./images/gal-11.jpg"
               alt="Gallery item 1"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
             <img
               src="./images/gal-6.png"
               alt="Gallery item 2"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
             <img
               src="./images/gal-13.jpg"
               alt="Gallery item 3"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
             <img
               src="./images/gal-8.jpg"
               alt="Gallery item 4"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
             <img
               src="./images/gal-9.jpg"
               alt="Gallery item 5"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
             <img
               src="./images/gal-5.png"
               alt="Gallery item 6"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
             <img
               src="./images/gal-11.jpg"
               alt="Gallery item 7"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
             <img
               src="./images/gal-6.png"
               alt="Gallery item 8"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
             <img
               src="./images/gal-13.jpg"
               alt="Gallery item 9"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
             <img
               src="./images/gal-8.jpg"
               alt="Gallery item 10"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
             <img
               src="./images/gal-9.jpg"
               alt="Gallery item 11"
-              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+              className="size-full max-h-[220px] min-h-[180px] rounded-lg object-cover pl-2"
             />
           </ImageScroll>
         </div>
