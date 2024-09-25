@@ -1,3 +1,4 @@
+import ImageScroll from 'components/ImageScroll'
 import { useCountdown } from 'hooks/useCountDown'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -8,12 +9,6 @@ const App = () => {
   const { days, hours, minutes, seconds } = useCountdown(
     'October 24, 2024 23:59:59'
   )
-
-  const onChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const lang_code = e.target.value
-    i18n.changeLanguage(lang_code)
-  }
-
   const [formData, setFormData] = useState({
     name: '',
     partner: '',
@@ -34,9 +29,6 @@ const App = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-
-    console.log(formData)
-
     const data = new FormData()
     data.append('name', formData.name)
     data.append('partner', formData.partner)
@@ -46,11 +38,12 @@ const App = () => {
     const Sheet_Url =
       'https://script.google.com/macros/s/AKfycbx5GpqGNe6J3dMa0DrYF31sNNYs9qY5LXZfOrp-D_mrGNvEJP3Omak1adF7WY8dR6wj/exec'
     try {
-      await fetch(Sheet_Url, {
+      fetch(Sheet_Url, {
         method: 'POST',
         body: data
       })
 
+      alert(t('rsvpSuccess'))
       setFormData({
         name: '',
         partner: '',
@@ -64,10 +57,27 @@ const App = () => {
 
   return (
     <div className="main mx-auto w-full max-w-[780px]">
-      <div className="main-img relative z-[99] px-4 py-5">
-        <h3 className="font-saigon text-center text-[14px] tracking-[4px] text-white">
-          25.10.2024
-        </h3>
+      <div className="main-img relative z-[99] px-5 pb-5">
+        <div className="flex items-center justify-between">
+          <h3 className="font-saigon text-center text-[14px] tracking-[4px] text-white">
+            25.10.2024
+          </h3>
+          <div className="flex gap-4">
+            <img
+              src="./images/en.svg"
+              alt="decoration"
+              className="mb-6 mt-9"
+              onClick={() => i18n.changeLanguage('en')}
+            />
+            <img
+              src="./images/vn.svg"
+              alt="decoration"
+              className="mb-6 mt-9"
+              onClick={() => i18n.changeLanguage('vn')}
+            />
+          </div>
+        </div>
+
         <div className="relative z-[99] flex h-full items-center justify-center gap-4 px-[50px] py-8">
           <h1 className="font-main-serif text-center text-[24px] uppercase tracking-[8px] text-white">
             CHARLES
@@ -85,7 +95,7 @@ const App = () => {
       </div>
       <div className="relative z-[99] bg-[#2E372E] px-[20px] pb-0 pt-14">
         <h3 className="font-main-sans text-mint text-center text-[13px] uppercase tracking-wider">
-          LỄ THÀNH HÔN
+          {t('weddingCeremony')}
         </h3>
       </div>
       <div className="relative z-[99] bg-[#2E372E] px-[20px] pt-8">
@@ -101,7 +111,7 @@ const App = () => {
       </div>
       <div className="date-box relative z-[99] w-full bg-[#2E372E] px-5 pb-14 pt-7">
         <div className="font-saigon border-y-[0.75px] border-white py-3 text-center text-xl font-normal uppercase tracking-widest text-white">
-          THỨ 6
+          {t('friday')}
         </div>
         <div className="flex w-full items-center justify-center">
           <div className="w-full flex-col items-center justify-center gap-[7px]">
@@ -165,9 +175,7 @@ const App = () => {
               fill="#819C79"
             />
           </svg>
-          <span className="font-saigon text-md text-green">
-            Ngày 25 tháng 10, 2024
-          </span>
+          <span className="font-saigon text-md text-green">{t('date')}</span>
         </div>
         <a
           href="https://maps.app.goo.gl/sYDaQTCUCkE85yyW9"
@@ -218,7 +226,7 @@ const App = () => {
               {days < 10 ? `0${days}` : days}
             </div>
             <div className="font-saigon mt-2 text-xs capitalize text-white">
-              ngày
+              {t('days')}
             </div>
           </div>
           <div className="mx-2 mb-8 mt-2 text-4xl text-white">:</div>
@@ -227,7 +235,7 @@ const App = () => {
               {hours < 10 ? `0${hours}` : hours}
             </div>
             <div className="font-saigon mt-2 text-xs capitalize text-white">
-              giờ
+              {t('hours')}
             </div>
           </div>
           <div className="mx-2 mb-8 mt-2 text-4xl text-white">:</div>
@@ -236,7 +244,7 @@ const App = () => {
               {minutes < 10 ? `0${minutes}` : minutes}
             </div>
             <div className="font-saigon mt-2 text-xs capitalize text-white">
-              phút
+              {t('minutes')}
             </div>
           </div>
           <div className="mx-2 mb-8 mt-2 text-4xl text-white">:</div>
@@ -245,7 +253,7 @@ const App = () => {
               {seconds < 10 ? `0${seconds}` : seconds}
             </div>
             <div className="font-saigon mt-2 text-xs capitalize text-white">
-              giây
+              {t('seconds')}
             </div>
           </div>
         </div>
@@ -343,7 +351,7 @@ const App = () => {
                   16:30
                 </div>
                 <div className="font-saigon text-center text-sm">
-                  Tiệc chiêu đãi
+                  {t('reception')}
                 </div>
               </div>
             </div>
@@ -410,7 +418,7 @@ const App = () => {
                   17:30
                 </div>
                 <div className="font-saigon text-center text-sm">
-                  Lễ thành hôn
+                  {t('ceremony')}
                 </div>
               </div>
             </div>
@@ -476,7 +484,9 @@ const App = () => {
                 <div className="font-saigon-b text-center text-[22px] font-bold">
                   18:00
                 </div>
-                <div className="font-saigon text-center text-sm">Chụp ảnh</div>
+                <div className="font-saigon text-center text-sm">
+                  {t('photoTime')}
+                </div>
               </div>
             </div>
             <div className="z-10 -mt-12 h-px w-4 rounded-[1px] bg-[#4A594A]" />
@@ -515,7 +525,9 @@ const App = () => {
                 <div className="font-saigon-b text-center text-[22px] font-bold">
                   18:30
                 </div>
-                <div className="font-saigon text-center text-sm">Dùng tiệc</div>
+                <div className="font-saigon text-center text-sm">
+                  {t('eating')}
+                </div>
               </div>
             </div>
           </div>
@@ -601,7 +613,7 @@ const App = () => {
                   19:30
                 </div>
                 <div className="font-saigon text-center text-sm">
-                  Bài phát biểu
+                  {t('speeches')}
                 </div>
               </div>
             </div>
@@ -866,7 +878,7 @@ const App = () => {
             22:00
           </div>
           <div className="font-saigon text-center text-sm">
-            After party tại{' '}
+            After party {t('at')}{' '}
             <p className="font-saigon-b font-bold">the Hideout</p>
           </div>
         </div>
@@ -876,19 +888,13 @@ const App = () => {
           <div className="ann-img-1 col-auto size-full overflow-hidden rounded-[10px]" />
           <div className="col-span-1 grid items-center rounded-[10px] bg-[#596F52] px-[20px] py-[22px]">
             <p className="font-saigon text-[12px] leading-[150%] text-[#F1F4F0]">
-              Thư và Charles gặp nhau vào năm 2019 tại Hà Nội. Kể từ đó, tình
-              cảm của họ ngày càng bền chặt qua những thử thách cùng nhau vượt
-              qua, những khoảnh khắc tuyệt vời và trở thành những người đồng
-              hành thực sự trên hành trình cuộc sống.
+              {t('des1')}
             </p>
             <p className="font-saigon mt-4 text-[12px] leading-[150%] text-[#F1F4F0]">
-              Chính điều đó đã dẫn đến việc Charles cầu hôn Thư vào ngày 23
-              tháng 10 năm 2023, tại Chiang Mai, Thái Lan.
+              {t('des2')}
             </p>
             <p className="font-saigon mt-4 text-[12px] leading-[150%] text-[#F1F4F0]">
-              Giờ đây, gần tròn một năm sau, đã đến lúc vinh danh lời cầu hôn ấy
-              bằng một lễ cưới được tổ chức trong sự hiện diện của gia đình và
-              bạn bè.
+              {t('des3')}
             </p>
           </div>
         </div>
@@ -904,204 +910,147 @@ const App = () => {
         </div>
       </div>
       <div className="relative -top-[2px] overflow-hidden bg-white pb-3 pt-[42px]">
-        <div className="mb-2">
-          <div className="flex flex-row transition-transform duration-1000 ease-linear">
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-1.png"
-                alt="Gallery item 0"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-12.jpg"
-                alt="Gallery item 1"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-2.png"
-                alt="Gallery item 2"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-10.jpg"
-                alt="Gallery item 3"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-3.png"
-                alt="Gallery item 4"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-7.png"
-                alt="Gallery item 5"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-4.png"
-                alt="Gallery item 6"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-1.png"
-                alt="Gallery item 7"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-12.jpg"
-                alt="Gallery item 8"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-2.png"
-                alt="Gallery item 9"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-10.jpg"
-                alt="Gallery item 10"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-3.png"
-                alt="Gallery item 11"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-7.png"
-                alt="Gallery item 12"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-4.png"
-                alt="Gallery item 13"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-          </div>
-        </div>
-        <div>
-          <div
-            className="flex flex-row-reverse transition-transform duration-1000 ease-linear"
-            style={{ transform: 'translateX(50%)' }}
-          >
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-5.png"
-                alt="Gallery item 0"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-11.jpg"
-                alt="Gallery item 1"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-6.png"
-                alt="Gallery item 2"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-13.jpg"
-                alt="Gallery item 3"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-8.jpg"
-                alt="Gallery item 4"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-9.jpg"
-                alt="Gallery item 5"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-5.png"
-                alt="Gallery item 6"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-11.jpg"
-                alt="Gallery item 7"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-6.png"
-                alt="Gallery item 8"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-13.jpg"
-                alt="Gallery item 9"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-8.jpg"
-                alt="Gallery item 10"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-1/3 shrink-0 p-1">
-              <img
-                src="./images/gal-9.jpg"
-                alt="Gallery item 11"
-                className="size-full max-h-[220px] rounded-lg object-cover"
-              />
-            </div>
-          </div>
+        <ImageScroll>
+          <img
+            src="./images/gal-1.png"
+            alt="Gallery item 0"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-12.jpg"
+            alt="Gallery item 1"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-2.png"
+            alt="Gallery item 2"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-10.jpg"
+            alt="Gallery item 3"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-3.png"
+            alt="Gallery item 4"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-7.png"
+            alt="Gallery item 5"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-4.png"
+            alt="Gallery item 6"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-1.png"
+            alt="Gallery item 7"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-12.jpg"
+            alt="Gallery item 8"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-2.png"
+            alt="Gallery item 9"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-10.jpg"
+            alt="Gallery item 10"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-3.png"
+            alt="Gallery item 11"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-7.png"
+            alt="Gallery item 12"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+          <img
+            src="./images/gal-4.png"
+            alt="Gallery item 13"
+            className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+          />
+        </ImageScroll>
+
+        <div className="mt-2">
+          <ImageScroll>
+            <img
+              src="./images/gal-5.png"
+              alt="Gallery item 0"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+            <img
+              src="./images/gal-11.jpg"
+              alt="Gallery item 1"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+            <img
+              src="./images/gal-6.png"
+              alt="Gallery item 2"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+            <img
+              src="./images/gal-13.jpg"
+              alt="Gallery item 3"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+            <img
+              src="./images/gal-8.jpg"
+              alt="Gallery item 4"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+            <img
+              src="./images/gal-9.jpg"
+              alt="Gallery item 5"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+            <img
+              src="./images/gal-5.png"
+              alt="Gallery item 6"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+            <img
+              src="./images/gal-11.jpg"
+              alt="Gallery item 7"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+            <img
+              src="./images/gal-6.png"
+              alt="Gallery item 8"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+            <img
+              src="./images/gal-13.jpg"
+              alt="Gallery item 9"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+            <img
+              src="./images/gal-8.jpg"
+              alt="Gallery item 10"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+            <img
+              src="./images/gal-9.jpg"
+              alt="Gallery item 11"
+              className="size-full max-h-[220px] rounded-lg object-cover pl-2"
+            />
+          </ImageScroll>
         </div>
       </div>
       <div className="relative -top-[3px] grid place-content-center bg-[#819C79] px-8 py-[28px]">
         <p className="font-saigon text-center text-sm text-[#F1F4F0]">
-          Chúng tôi rất mong được đón tiếp sự hiện diện của bạn. Kính mong bạn
-          vui lòng xác nhận tham dự trước ngày 14 tháng 10 năm 2024.
+          {t('des4')}
         </p>
       </div>
       <div className="relative -top-1 bg-white px-8 pt-14">
@@ -1116,7 +1065,7 @@ const App = () => {
             Charles Bester
           </h3>
           <p className="font-saigon text-center text-[12px] capitalize tracking-wider text-[#A7BAA2] ">
-            Chúng tôi mong chờ sự tham dự của bạn.{' '}
+            {t('des5')}
           </p>
           <form onSubmit={handleSubmit} className="relative grid gap-4 pt-6">
             <div className="grid gap-2">
@@ -1124,13 +1073,13 @@ const App = () => {
                 htmlFor="name"
                 className="font-saigon text-form text-[12px]"
               >
-                Khách mời
+                {t('guest')}
               </label>
               <input
                 type="text"
                 id="name"
                 name="name"
-                placeholder="Tên"
+                placeholder={t('guest')}
                 required
                 value={formData.name}
                 onChange={handleChange}
@@ -1142,13 +1091,13 @@ const App = () => {
                 htmlFor="partner"
                 className="font-saigon text-form text-[12px]"
               >
-                Bạn đồng hành
+                {t('partner')}
               </label>
               <input
                 type="text"
                 id="partner"
                 name="partner"
-                placeholder="Tên"
+                placeholder={t('partner')}
                 value={formData.partner}
                 onChange={handleChange}
                 className="font-main-sans rounded-md border border-gray-400 bg-white p-2 text-[10px] font-normal leading-loose tracking-wide text-gray-600"
@@ -1187,7 +1136,7 @@ const App = () => {
                     htmlFor="t16-yes"
                     className="form-btn-text font-main-sans-medium text-form pl-8 text-[12px] uppercase"
                   >
-                    Tham dự
+                    {t('accepts')}
                   </label>
                 </div>
                 <div className="btn-box flex items-center justify-start gap-2">
@@ -1203,7 +1152,7 @@ const App = () => {
                     htmlFor="t16-no"
                     className="form-btn-text font-main-sans-medium text-form pl-8 text-[12px] uppercase"
                   >
-                    Từ chối
+                    {t('declines')}
                   </label>
                 </div>
 
@@ -1212,7 +1161,7 @@ const App = () => {
                   className="col-span-2 mx-auto inline-flex h-[39px] w-[159px] items-center justify-center gap-2.5 rounded-[3px] border border-stone-400 bg-[#C7D3C4] px-[37px] py-2.5"
                 >
                   <p className="font-saigon-b text-xs font-semibold uppercase text-[#2C3829]">
-                    Submit
+                    {t('submit')}
                   </p>
                 </button>
               </div>
@@ -1222,10 +1171,10 @@ const App = () => {
       </div>
       <div className="relative -top-[5px] grid place-items-center bg-white px-10 py-[40px]">
         <p className="font-saigon mt-3 text-center text-sm italic text-[#596F52]">
-          Dress code : Ưu tiên trang phục không màu trắng.
+          {t('dressCode')}
         </p>
         <p className="font-saigon-b mt-3 text-center text-xs text-[#596F52]">
-          Chúng tôi rất mong được đón tiếp sự hiện diện của bạn!{' '}
+          {t('des6')}
         </p>
         <img src="./images/decor.svg" alt="decoration" className="mb-6 mt-9" />
       </div>
