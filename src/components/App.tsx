@@ -1,9 +1,67 @@
 import { useCountdown } from 'hooks/useCountDown'
+import { ChangeEvent, FormEvent, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const App = () => {
+  const { i18n, t } = useTranslation()
+
   const { days, hours, minutes, seconds } = useCountdown(
     'October 24, 2024 23:59:59'
   )
+
+  const onChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const lang_code = e.target.value
+    i18n.changeLanguage(lang_code)
+  }
+
+  const [formData, setFormData] = useState({
+    name: '',
+    partner: '',
+    email: '',
+    rsvp: 'Yes'
+  })
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.name === 'rsvp') {
+      setFormData({
+        ...formData,
+        rsvp: e.target.id === 't16-yes' ? 'Yes' : 'No'
+      })
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
+  }
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+
+    console.log(formData)
+
+    const data = new FormData()
+    data.append('name', formData.name)
+    data.append('partner', formData.partner)
+    data.append('email', formData.email)
+    data.append('rsvp', formData.rsvp)
+
+    const Sheet_Url =
+      'https://script.google.com/macros/s/AKfycbx5GpqGNe6J3dMa0DrYF31sNNYs9qY5LXZfOrp-D_mrGNvEJP3Omak1adF7WY8dR6wj/exec'
+    try {
+      await fetch(Sheet_Url, {
+        method: 'POST',
+        body: data,
+        muteHttpExceptions: true
+      })
+
+      setFormData({
+        name: '',
+        partner: '',
+        email: '',
+        rsvp: 'Yes'
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className="main mx-auto w-full max-w-[780px]">
@@ -23,7 +81,7 @@ const App = () => {
           </h1>
         </div>
         <h3 className="font-saigon text-center text-[14px] tracking-[2.5px] text-white">
-          Trân trọng mời bạn đến chung vui trong ngày hạnh phúc của chúng tôi{' '}
+          {t('thankyou')}
         </h3>
       </div>
       <div className="relative z-[99] bg-[#2E372E] px-[20px] pb-0 pt-14">
@@ -848,10 +906,7 @@ const App = () => {
       </div>
       <div className="relative -top-[2px] overflow-hidden bg-white pb-3 pt-[42px]">
         <div className="mb-2">
-          <div
-            className="flex flex-row transition-transform duration-1000 ease-linear"
-            style={{ transform: 'translateX(-57.1429%)' }}
-          >
+          <div className="flex flex-row transition-transform duration-1000 ease-linear">
             <div className="w-1/3 shrink-0 p-1">
               <img
                 src="./images/gal-1.png"
@@ -1064,41 +1119,45 @@ const App = () => {
           <p className="font-saigon text-center text-[12px] capitalize tracking-wider text-[#A7BAA2] ">
             Chúng tôi mong chờ sự tham dự của bạn.{' '}
           </p>
-          <form method="POST" className="relative grid gap-4 pt-6">
+          <form onSubmit={handleSubmit} className="relative grid gap-4 pt-6">
             <div className="grid gap-2">
               <label
-                htmlFor="guest_name"
+                htmlFor="name"
                 className="font-saigon text-form text-[12px]"
               >
                 Khách mời
               </label>
               <input
                 type="text"
-                id="guest_name"
-                name="guest_name"
+                id="name"
+                name="name"
                 placeholder="Tên"
                 required
+                value={formData.name}
+                onChange={handleChange}
                 className="font-main-sans rounded-md border border-gray-400 bg-white p-2 text-[10px] font-normal leading-loose tracking-wide text-gray-600"
               />
             </div>
             <div className="grid gap-2">
               <label
-                htmlFor="partner_name"
+                htmlFor="partner"
                 className="font-saigon text-form text-[12px]"
               >
                 Bạn đồng hành
               </label>
               <input
                 type="text"
-                id="partner_name"
-                name="partner_name"
+                id="partner"
+                name="partner"
                 placeholder="Tên"
+                value={formData.partner}
+                onChange={handleChange}
                 className="font-main-sans rounded-md border border-gray-400 bg-white p-2 text-[10px] font-normal leading-loose tracking-wide text-gray-600"
               />
             </div>
             <div className="grid gap-2">
               <label
-                htmlFor="partner_name"
+                htmlFor="email"
                 className="font-saigon text-form text-[12px]"
               >
                 Email
@@ -1109,6 +1168,8 @@ const App = () => {
                 name="email"
                 placeholder="Email"
                 required
+                value={formData.email}
+                onChange={handleChange}
                 className="font-main-sans rounded-md border border-gray-400 bg-white p-2 text-[10px] font-normal leading-loose tracking-wide text-gray-600"
               />
             </div>
@@ -1116,28 +1177,12 @@ const App = () => {
               <div className="btn-wrap grid grid-cols-2 gap-8">
                 <div className="btn-box flex items-center justify-start gap-2">
                   <input
-                    id="t16-no"
-                    type="radio"
-                    name="rsvp"
-                    required
-                    className="form-radio color-1"
-                    defaultValue="no"
-                  />
-                  <label
-                    htmlFor="t16-no"
-                    className="form-btn-text font-main-sans-medium text-form pl-8 text-[12px] uppercase"
-                  >
-                    Từ chối
-                  </label>
-                </div>
-                <div className="btn-box flex items-center justify-start gap-2">
-                  <input
                     id="t16-yes"
                     type="radio"
                     name="rsvp"
-                    required
                     className="form-radio color-1"
-                    defaultValue="yes"
+                    value={formData.rsvp}
+                    onChange={handleChange}
                   />
                   <label
                     htmlFor="t16-yes"
@@ -1146,7 +1191,27 @@ const App = () => {
                     Tham dự
                   </label>
                 </div>
-                <button className="col-span-2 mx-auto inline-flex h-[39px] w-[159px] items-center justify-center gap-2.5 rounded-[3px] border border-stone-400 bg-[#C7D3C4] px-[37px] py-2.5">
+                <div className="btn-box flex items-center justify-start gap-2">
+                  <input
+                    id="t16-no"
+                    type="radio"
+                    name="rsvp"
+                    className="form-radio color-1"
+                    value={formData.rsvp}
+                    onChange={handleChange}
+                  />
+                  <label
+                    htmlFor="t16-no"
+                    className="form-btn-text font-main-sans-medium text-form pl-8 text-[12px] uppercase"
+                  >
+                    Từ chối
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  className="col-span-2 mx-auto inline-flex h-[39px] w-[159px] items-center justify-center gap-2.5 rounded-[3px] border border-stone-400 bg-[#C7D3C4] px-[37px] py-2.5"
+                >
                   <p className="font-saigon-b text-xs font-semibold uppercase text-[#2C3829]">
                     Submit
                   </p>

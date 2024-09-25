@@ -5,4 +5,6 @@ import App from 'components/App'
 const container = document.getElementById('root') as HTMLDivElement
 const root = createRoot(container)
 
+import './i18n'
+
 root.render(<App />)
