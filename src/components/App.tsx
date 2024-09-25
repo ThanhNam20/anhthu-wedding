@@ -48,8 +48,7 @@ const App = () => {
     try {
       await fetch(Sheet_Url, {
         method: 'POST',
-        body: data,
-        muteHttpExceptions: true
+        body: data
       })
 
       setFormData({
