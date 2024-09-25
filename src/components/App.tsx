@@ -63,18 +63,21 @@ const App = () => {
             25.10.2024
           </h3>
           <div className="flex gap-4">
-            <img
-              src="./images/en.svg"
-              alt="decoration"
-              className="mb-6 mt-9"
-              onClick={() => i18n.changeLanguage('en')}
-            />
-            <img
-              src="./images/vn.svg"
-              alt="decoration"
-              className="mb-6 mt-9"
-              onClick={() => i18n.changeLanguage('vn')}
-            />
+            <div onClick={() => i18n.changeLanguage('en')}>
+              <img
+                src="./images/en.svg"
+                alt="decoration"
+                className="mb-6 mt-9 "
+              />
+            </div>
+
+            <div onClick={() => i18n.changeLanguage('vn')}>
+              <img
+                src="./images/vn.svg"
+                alt="decoration"
+                className="mb-6 mt-9"
+              />
+            </div>
           </div>
         </div>
 

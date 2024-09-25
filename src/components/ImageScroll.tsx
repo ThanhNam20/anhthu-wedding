@@ -18,14 +18,14 @@ const ImageScroll = (props: ImageScrollProps) => {
       nextArrow={<></>}
       responsive={[
         {
-          breakpoint: 800,
+          breakpoint: 400,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3
           }
         },
         {
-          breakpoint: 500,
+          breakpoint: 300,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3
